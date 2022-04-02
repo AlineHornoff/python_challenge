@@ -1,20 +1,17 @@
 import os
 import csv
 
+# locate csv file
 budget_data_csv = os.path.join("Resources", "budget_data.csv")
 
-#def budget_data(month_data):
-    #month = str(month_data[0])
-    #profit_loss = int(month_data[1])
-    #return profit_loss
-
 # Open and read csv
-with open(budget_data_csv, 'r') as csv_file:
+with open(budget_data_csv) as csv_file:
 
 
-    # Read the header and skip the header
-    csvreader = csv.reader(csv_file)
+    # Read and print the header and skip the header
+    csvreader = csv.reader(csv_file, delimiter=",")
     csv_reader = next(csvreader)
+    #print(f"Header: {csv_header}")
 
     # Create total number of month included in the data set
     month_count = sum(1 for row in csv_file)
@@ -29,6 +26,7 @@ with open(budget_data_csv, 'r') as csv_file:
     TotalProfitLoss = 0
     Profit = 0
     
+    # loop though net total amount of "Profit/Losses" over the entire period
     for row in csvreader:
         profit = int(row[1])
         if profit > 0:
@@ -44,6 +42,7 @@ with open(budget_data_csv, 'r') as csv_file:
     # Find the average of the change in "Profit/Losses" for the entire period
     total = []
     
+    # Loop through the average of the change in "Profit/Losses" for the entire period
     for row in csvreader:
         total.append(int(row[1]))
 
@@ -54,10 +53,10 @@ with open(budget_data_csv, 'r') as csv_file:
     next(csvreader)
       
     # Find the greatest increase in loses (date and amount) over the entire period
-    #GreatestIncrease = []
     months = []
     GreatestIncrease = []
 
+    # Loop through the greatest increase in loses (date and amount) over the entire period
     for row in csvreader:
         months.append(row[0])
         GreatestIncrease.append(int(row[1]))
@@ -75,9 +74,11 @@ with open(budget_data_csv, 'r') as csv_file:
     csv_file.seek(0)
     next(csvreader) 
 
+    # Find the greatest decrease in loses (date and amount) over the entire period
     months = []
     GreatestDecrease = []
 
+    # Loop through the greatest decrease in loses (date and amount) over the entire period
     for row in csvreader:
         months.append(row[0])
         GreatestDecrease.append(int(row[1]))
@@ -91,8 +92,6 @@ with open(budget_data_csv, 'r') as csv_file:
     for f in [months[MonthsMinIndex]]:
         GreatestDecreaseMonth = f
 
-    
-
     # Summarise and print 'Financial Analysis'
         print("Financial Analysis")
         print("----------------------")
@@ -102,7 +101,29 @@ with open(budget_data_csv, 'r') as csv_file:
         print(f"Greatest Increase in Profits: {GreatestIncreaseMonth} (${max(GreatestIncrease)})")
         print(f"Greatest Decrease in Profits: {GreatestDecreaseMonth} (${min(GreatestDecrease)})")
 
+    #------------------------------------
     # Export a text file with the results 
-       
+    #------------------------------------
+
+    # create text file
+    file = open("FinancialAnalysis.txt","w")
+
+    # Write in text file
+    file.write("Financial Analysis\n")
+    file.write("----------------------\n")
+    file.write(f"Total Months: {month_count}\n")
+    file.write(f"Total: ${TotalProfitLoss}\n")
+    file.write(f"Average Change: ${round(sum(AverageChange)/len(AverageChange),2)}\n")
+    file.write(f"Greatest Increase in Profits: {GreatestIncreaseMonth} (${max(GreatestIncrease)})\n")
+    file.write(f"Greatest Decrease in Profits: {GreatestDecreaseMonth} (${min(GreatestDecrease)})\n")
+
+    # Close text file
+    file.close
+
+
+
+
+
+        
 
     
