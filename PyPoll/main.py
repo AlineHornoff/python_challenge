@@ -122,25 +122,27 @@ with open(election_data_csv) as csv_file:
             candidate_results = (
                 f"{candidate_name}: {vote_percentage:.3f}% ({votes:,})\n")
             
-        # Print each candidate's voter count and percentage to the
-        # terminal.
-        print(candidate_results)
+            # Print each candidate's voter count and percentage to the
+            # terminal.
+            print(candidate_results)
 
         # Save the candidate results to our text file.
         txt_file.write(candidate_results)
 
         # Determine winning vote count, winning percentage, and candidate.
-        if (votes > winning_count) and (vote_percentage > winning_percentage):
-           winning_count = votes
-           winning_candidate = candidate_name
-           winning_percentage = vote_percentage
+        #if (votes > winning_count) and (vote_percentage > winning_percentage):
+           #winning_count = votes
+           #winning_candidate = candidate_name
+           #winning_percentage = vote_percentage
+
+            if votes > winning_count:
+                winning_count = votes
+                winning_candidate = candidate
 
         # Print the winning candidate's results to the terminal.
         winning_candidate_summary = (
             f"-------------------------\n"
-            f"Winner: {winning_candidate}\n"
-            f"Winning Vote Count: {winning_count:,}\n"
-            f"Winning Percentage: {winning_percentage:.3f}%\n"
+            f"Winner: {candidate_name}\n"
             f"-------------------------\n")
         print(winning_candidate_summary)
         
