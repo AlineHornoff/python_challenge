@@ -83,19 +83,20 @@ with open(election_data_csv) as csv_file:
     #------------------------------------
 
     # create text file
-    file = open("ElectionResults","w")
+    #file = open("ElectionResults","w")
+    with open("ElectionResults.txt","a") as file:
 
-    # Write in text file
-    file.write("Election Results\n")
-    file.write("----------------------\n")
-    file.write(f"Total Votes: {TotalVotes}\n")
-    file.write("----------------------\n")
-    # List of candiates and percentage of votes for each candidate
-    file.write(f"{candidate}: {vote_percentage:.3f}% ({votes})\n")
-    file.write("----------------------\n")
-    #The Winner
-    file.write(f"winner: {winning_candidate}\n")
-    file.write("----------------------\n")
+        # Write in text file
+        file.write("Election Results\n")
+        file.write("----------------------\n")
+        file.write(f"Total Votes: {TotalVotes}\n")
+        file.write("----------------------\n")
+        # List of candiates and percentage of votes for each candidate
+        file.write(f"{candidate}: {vote_percentage:.3f}% ({votes})\n")
+        file.write("----------------------\n")
+        #The Winner
+        file.write(f"winner: {winning_candidate}\n")
+        file.write("----------------------\n")
 
-    # Close text file
-    file.close
+        # Close text file
+        #file.close
