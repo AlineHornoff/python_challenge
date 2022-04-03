@@ -71,6 +71,7 @@ with open(election_data_csv) as csv_file:
     
         # Summarise and print 'Election Results'
         print(f"{candidate}: {vote_percentage:.3f}% ({votes})\n")
+        
 
     # Summarise and print 'Election Results'
     print("-----------------------------")
@@ -82,18 +83,19 @@ with open(election_data_csv) as csv_file:
     #------------------------------------
 
     # create text file
-    #file = open("ElectionResults","w")
+    file = open("ElectionResults","w")
 
     # Write in text file
-    #file.write("Election Results\n")
-    #file.write("----------------------\n")
-    #file.write(f"Total Votes: {month_count}\n")
-    #file.write("----------------------\n")
+    file.write("Election Results\n")
+    file.write("----------------------\n")
+    file.write(f"Total Votes: {TotalVotes}\n")
+    file.write("----------------------\n")
     # List of candiates and percentage of votes for each candidate
-    #file.write("----------------------\n")
+    file.write(f"{candidate}: {vote_percentage:.3f}% ({votes})\n")
+    file.write("----------------------\n")
     #The Winner
-    #file.write(f"Average Change: ${round(sum(AverageChange)/len(AverageChange),2)}\n")
-    #file.write("----------------------\n")
+    file.write(f"winner: {winning_candidate}\n")
+    file.write("----------------------\n")
 
     # Close text file
-    #file.close
+    file.close
